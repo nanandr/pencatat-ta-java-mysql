@@ -101,11 +101,11 @@
                 android:padding="12sp"
                 android:inputType="text"
                 android:maxLines="1"/>
-            <EditText
+            <Button
                 android:id="@+id/angkatan"
                 android:layout_width="116sp"
                 android:layout_height="wrap_content"
-                android:hint="Angkatan"
+                android:text="19"
                 android:elevation="6sp"
                 android:background="@drawable/form"
                 android:padding="12sp"
