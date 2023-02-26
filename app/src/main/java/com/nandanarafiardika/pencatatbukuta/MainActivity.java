@@ -6,6 +6,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -15,9 +20,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    private ListView listView;
     private String JSON_STRING;
     FloatingActionButton buttonAdd;
 
@@ -25,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //listview
+        listView = (ListView) findViewById(R.id.list_view);
+        listView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
         getJSON();
 
         buttonAdd = findViewById(R.id.add);
@@ -45,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject result = jsonArray.getJSONObject(i);
-                //id juga?
+                String id = result.getString(Config.ID);
                 String noInduk = result.getString(Config.NO_INDUK);
                 String judul = result.getString(Config.JUDUL);
                 String namaPemilik = result.getString(Config.NAMA_PEMILIK);
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 String tempatPkl = result.getString(Config.TEMPAT_PKL);
 
                 HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put(Config.ID, id);
                 hashMap.put(Config.NO_INDUK, noInduk);
                 hashMap.put(Config.JUDUL, judul);
                 hashMap.put(Config.NAMA_PEMILIK, namaPemilik);
@@ -68,9 +77,31 @@ public class MainActivity extends AppCompatActivity {
         catch (JSONException jsonException){
             jsonException.printStackTrace();
         }
+        ListAdapter listAdapter = new SimpleAdapter(
+                MainActivity.this, arrayList, R.layout.list_item,
+                new String[]{
+                        Config.ID,
+                        Config.NO_INDUK,
+                        Config.JUDUL,
+                        Config.NAMA_PEMILIK,
+                        Config.NAMA_PEMBIMBING,
+                        Config.ANGKATAN,
+                        Config.KELAS,
+                        Config.TEMPAT_PKL
+        },
+                new int[]{
+                        R.id.id,
+                        R.id.no_induk,
+                        R.id.judul,
+                        R.id.nama_pemilik,
+                        R.id.nama_pembimbing,
+                        R.id.angkatan,
+                        R.id.kelas,
+                        R.id.tempat_pkl
+                });
+        listView.setAdapter(listAdapter);
     }
 
-    //adapter
 
     private void getJSON(){
         class GetJSON extends AsyncTask<Void, Void, String>{
@@ -101,7 +132,16 @@ public class MainActivity extends AppCompatActivity {
         getJSON.execute();
     }
 
-    //adapter on click
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+        Intent intent = new Intent(this, EditActivity.class);
+        HashMap<String, String> hashMap = (HashMap) parent.getItemAtPosition(position);
+        String idString = hashMap.get(Config.ID).toString();
+        intent.putExtra(Config.ID, idString);
+        startActivity(intent);
+        finish();
+    }
 
-    //backpress
+    public void onBackPressed() {
+        finish();
+    }
 }

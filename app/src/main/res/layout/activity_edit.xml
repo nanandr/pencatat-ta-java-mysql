@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddActivity"
+    tools:context=".EditActivity"
     android:orientation="vertical"
     android:background="@color/light_gray">
 
@@ -47,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Halaman Tambah Data"
+                android:text="Halaman Edit Data"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
@@ -105,9 +105,9 @@
                 android:id="@+id/angkatan"
                 android:layout_width="116sp"
                 android:layout_height="match_parent"
+                android:elevation="6sp"
                 android:text="Angkatan"
                 android:textColor="@color/gray"
-                android:elevation="6sp"
                 android:background="@drawable/form"
                 android:padding="12sp"
                 android:layout_marginStart="16sp"
@@ -160,10 +160,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16sp"
-            android:text="Tambah Data"
+            android:text="Edit Data"
             android:backgroundTint="@color/primary"
             android:textColor="@color/white"
             android:elevation="6sp"/>
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16sp"
+            android:text="Hapus Data"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"
+            android:elevation="6sp"/>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,7 +64,10 @@ public class AddActivity extends AppCompatActivity {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(AddActivity.this);
             builder.setTitle("Pilih Angkatan");
-            builder.setItems(options, (dialogInterface, which) -> buttonAngkatan.setText(options[which]));
+            builder.setItems(options, (dialogInterface, which) -> {
+                buttonAngkatan.setTextColor(Color.BLACK);
+                buttonAngkatan.setText(options[which]);
+            });
             builder.show();
         });
 
@@ -75,7 +79,7 @@ public class AddActivity extends AppCompatActivity {
             final String judul = editTextJudul.getText().toString();
             final String namaPemilik = editTextNamaPemilik.getText().toString();
             final String namaPembimbing = editTextNamaPembimbing.getText().toString();
-            final String angkatan = buttonAngkatan.getText().toString().trim();
+            final String angkatan = buttonAngkatan.getText().toString();
             final String kelas = editTextKelas.getText().toString();
             final String tempatPkl = editTextTempatPkl.getText().toString();
 
@@ -93,6 +97,12 @@ public class AddActivity extends AppCompatActivity {
                     super.onPostExecute(message);
                     loading.dismiss();
                     Toast.makeText(AddActivity.this, message, Toast.LENGTH_LONG).show();
+                    editTextNoInduk.setText("");
+                    editTextJudul.setText("");
+                    editTextNamaPemilik.setText("");
+                    editTextNamaPembimbing.setText("");
+                    editTextKelas.setText("");
+                    editTextTempatPkl.setText("");
                 }
 
                 @Override
@@ -120,5 +130,13 @@ public class AddActivity extends AppCompatActivity {
             startActivity(back);
             finish();
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back = new Intent(this, MainActivity.class);
+        startActivity(back);
+        finish();
     }
 }

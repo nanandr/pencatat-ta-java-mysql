@@ -65,6 +65,21 @@ public class RequestHandler {
         return stringBuilder.toString();
     }
 
+    public String sendGetRequestParam(String requestURL, String id){
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            URL url = new URL(requestURL + id);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String response;
+            while ((response = bufferedReader.readLine()) != null){
+                stringBuilder.append(response + "\n");
+            }
+        }
+        catch (Exception exception){}
+        return stringBuilder.toString();
+    }
+
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
