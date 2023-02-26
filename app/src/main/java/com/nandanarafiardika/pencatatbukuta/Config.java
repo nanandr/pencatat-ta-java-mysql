@@ -11,6 +11,7 @@ public class Config {
     public static final String URL_DELETE = "http://192.168.1.9/android_catat_buku_ta/data/DeleteActivity.php?id=";
 
     public static final String URL_LOGIN = "http://192.168.1.9/android_catat_buku_ta/data/LoginActivity.php";
+    public static final String URL_REGISTER = "http://192.168.1.9/android_catat_buku_ta/data/RegisterActivity.php";
 
     public static final String ID = "id";
     public static final String NO_INDUK = "no_induk";

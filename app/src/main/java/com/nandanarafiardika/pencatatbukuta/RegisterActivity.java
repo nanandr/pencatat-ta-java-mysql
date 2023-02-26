@@ -9,39 +9,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
-public class LoginActivity extends AppCompatActivity {
-    private EditText editTextUsername, editTextPassword;
-    private TextView buttonRegister;
-    Button buttonLogin;
+public class RegisterActivity extends AppCompatActivity {
+    EditText editTextUsername, editTextPassword;
+    Button buttonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         editTextUsername = findViewById(R.id.username);
         editTextPassword = findViewById(R.id.password);
 
-        buttonLogin = findViewById(R.id.login);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        buttonRegister = findViewById(R.id.register);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String username = editTextUsername.getText().toString();
                 final String password = editTextPassword.getText().toString();
 
-                class Login extends AsyncTask<Void, Void, String>{
+                class Register extends AsyncTask<Void, Void, String>{
                     ProgressDialog loading;
 
                     @Override
                     protected void onPreExecute(){
                         super.onPreExecute();
-                        loading = ProgressDialog.show(LoginActivity.this,
-                                "Login..", "Mohon Tunggu", false, false);
+                        loading = ProgressDialog.show(RegisterActivity.this,
+                                "Registering..", "Mohon Tunggu", false, false);
                     }
 
                     @Override
@@ -49,15 +47,14 @@ public class LoginActivity extends AppCompatActivity {
                         super.onPostExecute(response);
                         loading.dismiss();
                         if(response.equals("Proceed")){
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             intent.putExtra("username", username);
                             intent.putExtra("password", password);
                             startActivity(intent);
                             finish();
                         }
                         else{
-                            Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
-                            editTextPassword.setText("");
+                            Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -68,19 +65,13 @@ public class LoginActivity extends AppCompatActivity {
                         params.put("password", password);
 
                         RequestHandler requestHandler = new RequestHandler();
-                        String response = requestHandler.sendPostRequest(Config.URL_LOGIN, params);
+                        String response = requestHandler.sendPostRequest(Config.URL_REGISTER, params);
                         return response;
                     }
                 }
-                Login login = new Login();
-                login.execute();
+                Register register = new Register();
+                register.execute();
             }
-        });
-
-        buttonRegister = findViewById(R.id.register);
-        buttonRegister.setOnClickListener(view -> {
-            Intent register = new Intent(this, RegisterActivity.class);
-            startActivity(register);
         });
     }
 }
