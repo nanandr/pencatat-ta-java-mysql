@@ -1,13 +1,16 @@
 package com.nandanarafiardika.pencatatbukuta;
 
 public class Config {
-    //change it to ip address
-    public static final String URL_VIEW = "http://ip/android_catat_buku_ta/data/ViewActivity.php";
-    public static final String URL_ADD = "http://ip/android_catat_buku_ta/data/AddActivity.php";
+    public static final String URL_VIEW = "http://192.168.1.9/android_catat_buku_ta/data/ViewActivity.php";
+    public static final String URL_SEARCH = "http://192.168.1.9/android_catat_buku_ta/data/ViewActivity.php?nama_pemilik=";
 
-    public static final String URL_GET = "http://ip/android_catat_buku_ta/data/GetActivity.php?id=";
-    public static final String URL_EDIT = "http://ip/android_catat_buku_ta/data/EditActivity.php";
-    public static final String URL_DELETE = "http://ip/android_catat_buku_ta/data/DeleteActivity.php?id=";
+    public static final String URL_ADD = "http://192.168.1.9/android_catat_buku_ta/data/AddActivity.php";
+
+    public static final String URL_GET = "http://192.168.1.9/android_catat_buku_ta/data/GetActivity.php?id=";
+    public static final String URL_EDIT = "http://192.168.1.9/android_catat_buku_ta/data/EditActivity.php";
+    public static final String URL_DELETE = "http://192.168.1.9/android_catat_buku_ta/data/DeleteActivity.php?id=";
+
+    public static final String URL_LOGIN = "http://192.168.1.9/android_catat_buku_ta/data/LoginActivity.php";
 
     public static final String ID = "id";
     public static final String NO_INDUK = "no_induk";

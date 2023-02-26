@@ -11,28 +11,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/primary"
-        android:padding="16dp"
+        android:orientation="vertical"
         android:elevation="12sp">
-        <ImageView
-            android:layout_width="32sp"
-            android:layout_height="32sp"
-            android:src="@drawable/icon"
-            android:layout_marginEnd="16sp"/>
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buku Tugas Akhir"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif-light"
-            android:textSize="24sp"/>
+            android:orientation="horizontal"
+            android:background="@color/primary"
+            android:padding="16dp">
+            <ImageView
+                android:layout_width="32sp"
+                android:layout_height="32sp"
+                android:src="@drawable/icon"
+                android:layout_marginEnd="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buku Tugas Akhir"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-light"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="16sp">
+            <EditText
+                android:id="@+id/search_box"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Cari Siswa.."
+                android:inputType="text"
+                android:backgroundTint="@color/white"
+                android:maxLines="1"/>
+            <Button
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cari"
+                android:background="@color/primary"
+                android:textColor="@color/white"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="68sp"
+        android:layout_marginTop="120sp"
         android:orientation="vertical">
         <ListView
             android:layout_width="match_parent"

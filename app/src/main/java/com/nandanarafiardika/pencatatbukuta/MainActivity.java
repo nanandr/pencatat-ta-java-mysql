@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,15 +28,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private ListView listView;
     private String JSON_STRING;
+    private Button buttonSearch;
+    private EditText editTextSearch;
     FloatingActionButton buttonAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         listView = (ListView) findViewById(R.id.list_view);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
-        getJSON();
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras == null){
+            getJSON(null);
+        }
+        else{
+            getJSON(extras.getString("keyword"));
+        }
+
+        editTextSearch = findViewById(R.id.search_box);
+        buttonSearch = findViewById(R.id.search);
+        buttonSearch.setOnClickListener(view -> {
+            Intent search = new Intent(this, MainActivity.class);
+            search.putExtra("keyword", editTextSearch.getText().toString());
+            startActivity(search);
+            finish();
+        });
 
         buttonAdd = findViewById(R.id.add);
         buttonAdd.setOnClickListener(view -> {
@@ -103,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private void getJSON(){
+    private void getJSON(String keyword){
         class GetJSON extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
@@ -124,7 +146,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler requestHandler = new RequestHandler();
-                String getRequest = requestHandler.sendGetRequest(Config.URL_VIEW);
+                String getRequest;
+                if(keyword == null){
+                    getRequest = requestHandler.sendGetRequest(Config.URL_VIEW);
+                }
+                else{
+                    getRequest = requestHandler.sendGetRequestParam(Config.URL_SEARCH,keyword);
+                }
+
                 return getRequest;
             }
         }
