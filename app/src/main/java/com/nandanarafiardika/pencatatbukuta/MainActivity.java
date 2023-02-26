@@ -2,6 +2,7 @@ package com.nandanarafiardika.pencatatbukuta;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String JSON_STRING;
     private Button buttonSearch;
     private EditText editTextSearch;
+    private ImageView buttonLogout;
     FloatingActionButton buttonAdd;
 
     @Override
@@ -62,6 +65,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         buttonAdd.setOnClickListener(view -> {
             Intent add = new Intent(this, AddActivity.class);
             startActivity(add);
+        });
+
+        buttonLogout = findViewById(R.id.logout);
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete_dialog();
+            }
+            public void delete_dialog(){
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Apakah anda yakin akan logout?");
+                builder.setPositiveButton("Ya", (dialogInterface1, i1) -> {
+                    Intent logout = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(logout);
+                    finish();
+                });
+                builder.setNegativeButton("Tidak", ((dialogInterface12, i12) -> dialogInterface12.dismiss()));
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
         });
     }
 
@@ -171,6 +194,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void onBackPressed() {
-        finish();
+        moveTaskToBack(true);
     }
 }
