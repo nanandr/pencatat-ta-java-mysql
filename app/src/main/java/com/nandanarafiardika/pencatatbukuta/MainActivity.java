@@ -103,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 String judul = result.getString(Config.JUDUL);
                 String namaPemilik = result.getString(Config.NAMA_PEMILIK);
                 String namaPembimbing = result.getString(Config.NAMA_PEMBIMBING);
-                String angkatan = result.getString(Config.ANGKATAN);
-                String kelas = result.getString(Config.KELAS);
+                String tahun = result.getString(Config.TAHUN);
                 String tempatPkl = result.getString(Config.TEMPAT_PKL);
 
                 HashMap<String, String> hashMap = new HashMap<>();
@@ -113,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 hashMap.put(Config.JUDUL, judul);
                 hashMap.put(Config.NAMA_PEMILIK, namaPemilik);
                 hashMap.put(Config.NAMA_PEMBIMBING, namaPembimbing);
-                hashMap.put(Config.ANGKATAN, angkatan);
-                hashMap.put(Config.KELAS, kelas);
+                hashMap.put(Config.TAHUN, tahun);
                 hashMap.put(Config.TEMPAT_PKL, tempatPkl);
                 arrayList.add(hashMap);
             }
@@ -130,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         Config.JUDUL,
                         Config.NAMA_PEMILIK,
                         Config.NAMA_PEMBIMBING,
-                        Config.ANGKATAN,
-                        Config.KELAS,
+                        Config.TAHUN,
                         Config.TEMPAT_PKL
         },
                 new int[]{
@@ -140,8 +137,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                         R.id.judul,
                         R.id.nama_pemilik,
                         R.id.nama_pembimbing,
-                        R.id.angkatan,
-                        R.id.kelas,
+                        R.id.tahun,
                         R.id.tempat_pkl
                 });
         listView.setAdapter(listAdapter);

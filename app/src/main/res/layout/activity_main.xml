@@ -42,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/primary"
             android:paddingStart="16sp">
             <EditText
                 android:id="@+id/search_box"
@@ -50,14 +50,17 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="Cari Siswa.."
+                android:background="@drawable/form"
                 android:inputType="text"
+                android:padding="5sp"
                 android:backgroundTint="@color/white"
                 android:maxLines="1"/>
             <Button
                 android:id="@+id/search"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Cari"
+                android:padding="5sp"
                 android:background="@color/primary"
                 android:textColor="@color/white"/>
         </LinearLayout>
@@ -71,7 +74,8 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/list_view">
+            android:id="@+id/list_view"
+            android:divider="@null">
         </ListView>
     </LinearLayout>
 

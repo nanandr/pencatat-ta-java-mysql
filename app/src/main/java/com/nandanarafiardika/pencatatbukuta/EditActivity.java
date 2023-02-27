@@ -26,11 +26,10 @@ import java.util.HashMap;
 
 public class EditActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText editTextNoInduk, editTextJudul, editTextNamaPemilik, editTextNamaPembimbing, editTextTempatPkl, editTextKelas;
-    private Button buttonAngkatan, buttonAdd, buttonDelete;
+    private EditText editTextNoInduk, editTextJudul, editTextNamaPemilik, editTextNamaPembimbing, editTextTempatPkl, editTextTahun;
+    private Button buttonAdd, buttonDelete;
     private ImageView buttonBack;
     private String id;
-    int currentAngkatan;
 
 
     @Override
@@ -52,32 +51,15 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         editTextJudul = findViewById(R.id.judul);
         editTextNamaPemilik = findViewById(R.id.nama_pemilik);
         editTextNamaPembimbing = findViewById(R.id.nama_pembimbing);
-        editTextKelas = findViewById(R.id.kelas);
         editTextTempatPkl = findViewById(R.id.tempat_pkl);
-        buttonAngkatan = findViewById(R.id.angkatan);
+        editTextTahun = findViewById(R.id.tahun);
         buttonAdd = findViewById(R.id.add);
         buttonDelete = findViewById(R.id.delete);
-
-        if(currentMonth < 6){
-            currentAngkatan = currentYear - 2003;
-        }
-        else{
-            currentAngkatan = currentYear - 2002;
-        }
-
-        buttonAngkatan.setOnClickListener(view -> {
-            String[] options = new String[currentAngkatan + 1];
-            for (int i = 1; i <= currentAngkatan; ++i) {
-                options[i-1] = Integer.toString(i);
-            }
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
-            builder.setTitle("Pilih Angkatan");
-            builder.setItems(options, (dialogInterface, which) -> {
-                buttonAngkatan.setTextColor(Color.BLACK);
-                buttonAngkatan.setText(options[which]);
-            });
-            builder.show();
+        buttonBack = findViewById(R.id.back);
+        buttonBack.setOnClickListener(view -> {
+            Intent back = new Intent(this, MainActivity.class);
+            startActivity(back);
+            finish();
         });
 
         buttonAdd.setOnClickListener(this);
@@ -125,17 +107,15 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             String judul = c.getString(Config.JUDUL);
             String namaPemilik = c.getString(Config.NAMA_PEMILIK);
             String namaPembimbing = c.getString(Config.NAMA_PEMBIMBING);
-            String angkatan = c.getString(Config.ANGKATAN);
-            String kelas = c.getString(Config.KELAS);
+            String tahun = c.getString(Config.TAHUN);
             String tempatPkl = c.getString(Config.TEMPAT_PKL);
 
             editTextNoInduk.setText(noInduk);
             editTextJudul.setText(judul);
             editTextNamaPemilik.setText(namaPemilik);
             editTextNamaPembimbing.setText(namaPembimbing);
-            editTextKelas.setText(kelas);
             editTextTempatPkl.setText(tempatPkl);
-            buttonAngkatan.setText(angkatan);
+            editTextTahun.setText(tahun);
         }
         catch (JSONException jsonException) {
             jsonException.printStackTrace();
@@ -153,8 +133,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         final String judul = editTextJudul.getText().toString();
         final String namaPemilik = editTextNamaPemilik.getText().toString();
         final String namaPembimbing = editTextNamaPembimbing.getText().toString();
-        final String angkatan = buttonAngkatan.getText().toString().trim();
-        final String kelas = editTextKelas.getText().toString();
+        final String tahun = editTextTahun.getText().toString().trim();
         final String tempatPkl = editTextTempatPkl.getText().toString();
 
         class UpdateData extends AsyncTask<Void, Void, String>{
@@ -175,7 +154,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 editTextJudul.setText("");
                 editTextNamaPemilik.setText("");
                 editTextNamaPembimbing.setText("");
-                editTextKelas.setText("");
                 editTextTempatPkl.setText("");
             }
 
@@ -187,8 +165,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 hashMap.put(Config.JUDUL, judul);
                 hashMap.put(Config.NAMA_PEMILIK, namaPemilik);
                 hashMap.put(Config.NAMA_PEMBIMBING, namaPembimbing);
-                hashMap.put(Config.ANGKATAN, angkatan);
-                hashMap.put(Config.KELAS, kelas);
+                hashMap.put(Config.TAHUN, tahun);
                 hashMap.put(Config.TEMPAT_PKL, tempatPkl);
 
                 RequestHandler requestHandler = new RequestHandler();
@@ -249,9 +226,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view == buttonDelete){
             confirmDelete();
-        }
-        if(view == buttonAngkatan){
-
         }
     }
 }

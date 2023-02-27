@@ -33,18 +33,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Angkatan "/>
+                android:text="Tahun Cetak "/>
             <TextView
-                android:id="@+id/angkatan"
+                android:id="@+id/tahun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="18"/>
         </LinearLayout>
         <TextView
-            android:id="@+id/kelas"
+            android:id="@+id/no_induk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="XI RPL B"
+            android:text="210912210"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginBottom="5sp"/>
@@ -53,12 +53,22 @@
             android:layout_height="1sp"
             android:background="@color/primary"
             android:layout_marginBottom="5sp"/>
-        <TextView
-            android:id="@+id/nama_pembimbing"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nama Pembimbing"
-            android:layout_marginBottom="5sp"/>
+            android:orientation="horizontal"
+            android:layout_marginBottom="5sp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Pembimbing: "/>
+            <TextView
+                android:id="@+id/nama_pembimbing"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Nama Pembimbing"/>
+        </LinearLayout>
         <TextView
             android:id="@+id/tempat_pkl"
             android:layout_width="match_parent"

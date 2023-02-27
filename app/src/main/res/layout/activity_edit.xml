@@ -54,8 +54,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16sp">
         <TextView
@@ -64,6 +63,19 @@
             android:text="Data Siswa"
             android:textColor="@color/primary"
             android:layout_marginBottom="16sp"/>
+
+        <EditText
+            android:id="@+id/nama_pemilik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Siswa"
+            android:elevation="6sp"
+            android:background="@drawable/form"
+            android:padding="12sp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:layout_marginBottom="16sp"/>
+
         <EditText
             android:id="@+id/no_induk"
             android:layout_width="match_parent"
@@ -75,45 +87,19 @@
             android:inputType="number"
             android:maxLines="1"
             android:layout_marginBottom="16sp"/>
+
         <EditText
-            android:id="@+id/nama_pemilik"
+            android:id="@+id/tahun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Pemilik"
+            android:hint="Tahun"
             android:elevation="6sp"
             android:background="@drawable/form"
             android:padding="12sp"
-            android:inputType="text"
+            android:inputType="number"
             android:maxLines="1"
+            android:maxLength="4"
             android:layout_marginBottom="16sp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16sp">
-            <EditText
-                android:id="@+id/kelas"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:hint="Kelas"
-                android:elevation="6sp"
-                android:background="@drawable/form"
-                android:padding="12sp"
-                android:inputType="text"
-                android:maxLines="1"/>
-            <Button
-                android:id="@+id/angkatan"
-                android:layout_width="116sp"
-                android:layout_height="match_parent"
-                android:elevation="6sp"
-                android:text="Angkatan"
-                android:textColor="@color/gray"
-                android:background="@drawable/form"
-                android:padding="12sp"
-                android:layout_marginStart="16sp"
-                android:inputType="text"
-                android:maxLines="1"/>
-        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -121,6 +107,7 @@
             android:text="Data Tugas Akhir"
             android:textColor="@color/primary"
             android:layout_marginBottom="16sp"/>
+
         <EditText
             android:id="@+id/judul"
             android:layout_width="match_parent"
@@ -132,6 +119,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:layout_marginBottom="16sp"/>
+
         <EditText
             android:id="@+id/tempat_pkl"
             android:layout_width="match_parent"
@@ -143,6 +131,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:layout_marginBottom="16sp"/>
+
         <EditText
             android:id="@+id/nama_pembimbing"
             android:layout_width="match_parent"
@@ -173,7 +162,7 @@
             android:backgroundTint="@color/red"
             android:textColor="@color/white"
             android:elevation="6sp"/>
-
     </LinearLayout>
 
 </LinearLayout>
+
