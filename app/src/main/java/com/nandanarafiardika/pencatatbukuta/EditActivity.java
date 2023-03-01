@@ -150,11 +150,16 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
                 super.onPostExecute(message);
                 loading.dismiss();
                 Toast.makeText(EditActivity.this, message, Toast.LENGTH_LONG).show();
-                editTextNoInduk.setText("");
-                editTextJudul.setText("");
-                editTextNamaPemilik.setText("");
-                editTextNamaPembimbing.setText("");
-                editTextTempatPkl.setText("");
+                if(message.equals("Berhasil Mengedit Data")){
+                    editTextNoInduk.setText("");
+                    editTextJudul.setText("");
+                    editTextNamaPemilik.setText("");
+                    editTextNamaPembimbing.setText("");
+                    editTextTempatPkl.setText("");
+                    Intent main = new Intent(EditActivity.this, MainActivity.class);
+                    startActivity(main);
+                    finish();
+                }
             }
 
             @Override

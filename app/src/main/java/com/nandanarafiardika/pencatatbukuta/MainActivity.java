@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        editTextSearch = findViewById(R.id.search_box);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         else{
             getJSON(extras.getString("keyword"));
+            editTextSearch.setText(extras.getString("keyword"));
         }
 
-        editTextSearch = findViewById(R.id.search_box);
         buttonSearch = findViewById(R.id.search);
         buttonSearch.setOnClickListener(view -> {
             Intent search = new Intent(this, MainActivity.class);

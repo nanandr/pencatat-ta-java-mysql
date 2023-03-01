@@ -1,7 +1,7 @@
 package com.nandanarafiardika.pencatatbukuta;
 
 public class Config {
-    public static final String IP = "http://172.16.100.107";
+    public static final String IP = "http://172.16.100.166";
     public static final String URL_VIEW = IP+"/android_catat_buku_ta/data/ViewActivity.php";
     public static final String URL_SEARCH = IP+"/android_catat_buku_ta/data/ViewActivity.php?nama_pemilik=";
 
